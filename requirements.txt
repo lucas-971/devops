@@ -1,4 +1,2 @@
-Flask
-waitress
+scikit-learn
 pandas
-numpy
