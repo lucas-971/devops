@@ -1,4 +1,4 @@
-name: ML Model CI 2
+name: ML Model CI 4
 
 on: [push]
     
@@ -54,5 +54,8 @@ jobs:
         path: .
 
     - name: Test Model
+      env:
+        SEUIL: ${{ vars.SEUIL }}
       run: |
+        echo $SEUIL
         python test.py
