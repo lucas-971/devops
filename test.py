@@ -1,5 +1,6 @@
+import os
 import pandas as pd
-import pickle, os
+import pickle
 from sklearn.metrics import accuracy_score
 
 # Charger le modèle
@@ -19,10 +20,10 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f"Précision du modèle : {accuracy:.2f}")
 
 # Définir un seuil de classification
-seuil_classification = 0.90  # par exemple
+seuil_classification = float(os.environ['SEUIL'])
 
 # Vérifier si le seuil est atteint
-if accuracy >= float(os.environ["GIT_BRANCH"]):
+if accuracy >= seuil_classification:
     print("Le seuil de classification est atteint. Le modèle est prêt pour le déploiement.")
 else:
     print("Le seuil de classification n'est pas atteint. Le modèle nécessite une amélioration.")
