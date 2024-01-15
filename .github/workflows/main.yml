@@ -1,4 +1,4 @@
-name: Condition
+name: Failure workflow
 
 on: 
   workflow_dispatch:
@@ -9,20 +9,22 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: set up python
+    - name: Set up Python
       uses: actions/setup-python@v2
       with:
-      python-version: '3.8'
-    
-    - name: Execute python
+        python-version: '3.8'
+
+    - name: Execute Python
       run: python empty.py
-
-
+  
   test:
     runs-on: ubuntu-latest
     needs: build
     if: failure()
     steps:
     - name: Display
-      run: |
-        echo "Le job n'est pas bon"
+      run: echo 'Le job precedent a echoue'
+
+
+
+
