@@ -14,8 +14,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build
-    env:
-      variable: ${{env.SEUIL_CLASSIFICATION}}
+    - name: recup vars
+      env:
+        variable: ${{env.SEUIL_CLASSIFICATION}}
     if: $variable >= 0 && $variable <= 1
     steps:
     - name: Test
