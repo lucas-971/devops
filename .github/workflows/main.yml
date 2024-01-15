@@ -20,10 +20,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build
-    if: failure()
-    steps:
-    - name: Display
-      run: echo 'Le job precedent a echoue'
+     if: ${{ seuil_classification >= 0 && seuil_classification <= 1}}
+        run: echo "$seuil_classification est compris entre 0 et 1"
 
 
 
