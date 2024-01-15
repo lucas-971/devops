@@ -1,4 +1,4 @@
-name: Failure workflow
+name: Condition
 
 on: 
   workflow_dispatch:
@@ -9,22 +9,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set up Python
+    - name: set up python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8'
-
-    - name: Execute Python
-      run: python empty.py
-  
-  test:
-    runs-on: ubuntu-latest
-    needs: build
+      python-version: '3.8'
+    
     if: ${{ vars.seuil_classification >= 0 && vars.seuil_classification <= 1}}
     steps:
     - name: Test
       run: echo "$seuil_classification est compris entre 0 et 1"
-
-
-
-
