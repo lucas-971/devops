@@ -8,20 +8,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-  
+
+    - name: set up python
+      uses: actions/setup-python@v2
+      with:
+      python-version: '3.8'
+    
+    - name: Execute python
+      run: python empty.py
+
+
   test:
     runs-on: ubuntu-latest
     needs: build
+    if: failure()
     steps:
-    - name: Print test
+    - name: Display
       run: |
-        echo "Job Test"
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    steps:
-    - name: Print test
-      run: |
-        echo "Job Test"
+        echo "Le job n'est pas bon"
