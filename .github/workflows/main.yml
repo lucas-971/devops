@@ -20,8 +20,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build
-     if: ${{ vars.seuil_classification >= 0 && vars.seuil_classification <= 1}}
-        run: echo "$seuil_classification est compris entre 0 et 1"
+    if: ${{ vars.seuil_classification >= 0 && vars.seuil_classification <= 1}}
+    steps:
+    - name: Test
+      run: echo "$seuil_classification est compris entre 0 et 1"
 
 
 
