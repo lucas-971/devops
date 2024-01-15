@@ -1,0 +1,16 @@
+name: check commit
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  check-commit-message:
+    runs-on: ubuntu-latest
+    name: commit-message-validation
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: uptownaravi/verify-commit-message-action@v2
+          with:
+            regex: '\W*((?i)wifi(?-i))\W*'
+    
