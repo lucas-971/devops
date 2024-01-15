@@ -1,16 +1,11 @@
-name: check commit
+name: Conditionnel sur Dernier Message de Commit
 
-on: 
-  workflow_dispatch:
+on: push
 
 jobs:
-  check-commit-message:
+  check-last-commit-message:
     runs-on: ubuntu-latest
-    name: commit-message-validation
+    if: contains(github.event.head_commit.message, 'portable')
     steps:
-      - uses: actions/checkout@v3
-      - id: foo
-        uses: uptownaravi/verify-commit-message-action@v2
-        with:
-          regex: '\W*((?i)wifi(?-i))\W*'
-    
+      - name: Exécuter un script si le dernier message de commit contient 'wifi'
+        run: echo "Le mot 'telephone' a été trouvé dans le dernier message de commit."
